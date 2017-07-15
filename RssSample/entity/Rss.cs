@@ -13,24 +13,18 @@ namespace RssSample.entity {
             get;
             set;
         }
-        public string enclosure {
-            get;
-            set;
-        }
         public string guide {
             get;
             set;
         }
 
-        public class Enclosure {
-            public string url {
-                get;
-                set;
-            }
-            public string type {
-                get;
-                set;
-            }
+        public string enclosureUrl {
+            get;
+            set;
+        }
+        public string enclosureType {
+            get;
+            set;
         }
         public Rss(){
             this.title = "";
