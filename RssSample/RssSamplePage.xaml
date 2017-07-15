@@ -15,7 +15,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Vertical" Padding="5">
+                        <StackLayout Orientation="Horizontal" Padding="5">
                             <Label Text="{Binding title}"
                                 Style="{StaticResource titleStyle}"/>
                         </StackLayout>
