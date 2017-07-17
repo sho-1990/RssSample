@@ -15,7 +15,15 @@ namespace RssSample {
 
         private async void call() {
 			rssDatas = await ApiRss.Get();
+            setupThumbnails();
             list.ItemsSource = rssDatas;
+
+        private void setupThumbnails() {
+			foreach (Rss r in rssDatas) {
+				if (r.enclosureUrl != null) {
+					r.thumbnail = ImageSource.FromUri(new Uri(r.enclosureUrl));
+				}
+			}
         }
     }
 }
