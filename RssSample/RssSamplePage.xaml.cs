@@ -17,6 +17,14 @@ namespace RssSample {
 			rssDatas = await ApiRss.Get();
             setupThumbnails();
             list.ItemsSource = rssDatas;
+            list.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                Rss r = (Rss)e.Item;
+                string url = r.link;
+                if (url != null) {
+                    Device.OpenUri(new Uri(url));
+                }
+            };
+        }
 
         private void setupThumbnails() {
 			foreach (Rss r in rssDatas) {
