@@ -1,4 +1,6 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace RssSample.entity {
     public class Rss {
         public string title {
@@ -18,6 +20,10 @@ namespace RssSample.entity {
             set;
         }
 
+        public ImageSource thumbnail {
+            get;
+            set;
+        }
         public string enclosureUrl {
             get;
             set;

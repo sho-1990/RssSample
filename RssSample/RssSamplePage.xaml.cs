@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using RssSample.api;
 using RssSample.entity;
@@ -14,15 +15,23 @@ namespace RssSample {
 
         private async void call() {
 			rssDatas = await ApiRss.Get();
-            foreach(Rss r in rssDatas) {
-                Debug.WriteLine(r.title);
-                Debug.WriteLine(r.link);
-                Debug.WriteLine(r.pubDate);
-                Debug.WriteLine(r.enclosureUrl);
-                Debug.WriteLine(r.enclosureType);
-            }
-
+            setupThumbnails();
             list.ItemsSource = rssDatas;
+            list.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+                Rss r = (Rss)e.Item;
+                string url = r.link;
+                if (url != null) {
+                    Device.OpenUri(new Uri(url));
+                }
+            };
+        }
+
+        private void setupThumbnails() {
+			foreach (Rss r in rssDatas) {
+				if (r.enclosureUrl != null) {
+					r.thumbnail = ImageSource.FromUri(new Uri(r.enclosureUrl));
+				}
+			}
         }
     }
 }

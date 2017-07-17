@@ -44,12 +44,16 @@ namespace RssSample.api
             IEnumerable<XElement> items =doc.Element("rss").Element("channel").Elements("item");
             ObservableCollection<Rss> rssList = new ObservableCollection<Rss>();
             foreach(XElement item in items) {
-                Rss rss = new Rss();
-                rss.title = (string)item.Element("title");
-                rss.link = (string)item.Element("link");
-                rss.pubDate = (string)item.Element("pubDate");
-                rss.guide = (string)item.Element("guide");
-                parseEnclosure(ref rss, item.Element("enclosure"));
+                Rss rss = new Rss() {
+                    title = (string)item.Element("title"),
+                    link = (string)item.Element("link"),
+                    pubDate = (string)item.Element("pubDate"),
+                    guide = (string)item.Element("guide")
+                };
+                XElement enclosure = item.Element("enclosure");
+                if (enclosure != null) {
+                    parseEnclosure(ref rss, item.Element("enclosure"));
+                }
                 rssList.Add(rss);
             }
             return rssList;
