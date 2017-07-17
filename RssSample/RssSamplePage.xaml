@@ -15,8 +15,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="5">
+                        <StackLayout Orientation="Horizontal"
+                            Padding="5">
+                            <Image Source="{Binding thumbnail}"
+                                VerticalOptions="Center"/>
                             <Label Text="{Binding title}"
+                                    VerticalOptions="Center"
                                 Style="{StaticResource titleStyle}"/>
                         </StackLayout>
                     </ViewCell>
