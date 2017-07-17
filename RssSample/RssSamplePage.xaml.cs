@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using RssSample.api;
 using RssSample.entity;
@@ -14,14 +15,6 @@ namespace RssSample {
 
         private async void call() {
 			rssDatas = await ApiRss.Get();
-            foreach(Rss r in rssDatas) {
-                Debug.WriteLine(r.title);
-                Debug.WriteLine(r.link);
-                Debug.WriteLine(r.pubDate);
-                Debug.WriteLine(r.enclosureUrl);
-                Debug.WriteLine(r.enclosureType);
-            }
-
             list.ItemsSource = rssDatas;
         }
     }
