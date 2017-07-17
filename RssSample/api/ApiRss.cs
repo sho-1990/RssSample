@@ -49,7 +49,10 @@ namespace RssSample.api
                 rss.link = (string)item.Element("link");
                 rss.pubDate = (string)item.Element("pubDate");
                 rss.guide = (string)item.Element("guide");
-                parseEnclosure(ref rss, item.Element("enclosure"));
+                XElement enclosure = item.Element("enclosure");
+                if (enclosure != null) {
+                    parseEnclosure(ref rss, item.Element("enclosure"));
+                }
                 rssList.Add(rss);
             }
             return rssList;
